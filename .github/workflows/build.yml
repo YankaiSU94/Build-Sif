@@ -1,0 +1,14 @@
+name: Build SIF
+on: [push]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: eitchnet/setup-container-tools@v1.0
+      - name: Build SIF
+        run: apptainer build braker3.sif docker://teambraker/braker3:latest
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: braker3-sif
+          path: braker3.sif
